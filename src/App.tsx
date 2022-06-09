@@ -1,24 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import AddList from './components/AddList';
+import './components/List';
+import List from './components/List';
+
+export interface IList {
+  people:{
+   name: string
+   age: number
+   url: string
+   notes?: string
+  }[]
+}
 
 function App() {
+  const [people, setPeople] = useState<IList["people"]>([
+    {
+      name: "Sachin Tendulkar",
+      age: 49,
+      url: "https://www.cricbuzz.com/a/img/v1/152x152/i1/c171004/sachin-tendulkar.jpg",
+      notes: "God of Cricket"
+    }
+  ]);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+       <p>App component</p>
+       <List people={people}/>
+       <AddList people={people} setPeople={setPeople}/>
     </div>
   );
 }
